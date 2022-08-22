@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+  
+#GRPNAME="developers"
+LINE=1
+while read -r NEW_USER
+  do
+    grep $NEW_USER /etc/passwd
+    if [ $? -eq 0 ];
+    then
+        echo "User $NEW_USER already exists!"
+
+    else
+        PASSWORD=$NEW_USER@123
+        sudo useradd -g developers -d /home/$NEW_USER -s /usr/bin/bash -m $NEW_USER -p $PASSWORD
+        
+        echo "Successfully added $NEW_USER to Developers group"
+        #su - ${NEW_USER} -c "umask 022 ; mkdir -p .ssh/authorised_keys"
+        
+
+        ((LINE++))
+    fi
+done < "./names.csv"
