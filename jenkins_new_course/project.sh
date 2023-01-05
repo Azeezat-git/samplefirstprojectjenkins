@@ -1,1 +1,1 @@
-echo "This is my first project. Testing is complete"
+echo "This is my first project. Testing is complete right now"
